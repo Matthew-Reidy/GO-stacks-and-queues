@@ -1,4 +1,4 @@
-### Stack
+### Stack and Queues
 
 ## About
 implemented stack and queue data structure since the go standard library doesn't include one. This is so, if the need arises, I have a ready made package that implements and handles the fine grained details of these data structures
