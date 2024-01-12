@@ -1,24 +1,27 @@
 package main
 
-import "log"
+import (
+	"errors"
+)
 
 type queue []interface{}
 
-func (q *queue) peek() interface{} {
+func (q *queue) peek() (interface{}, error) {
 	if q == nil {
-		return nil
+		return nil, errors.New("Can not retrieve element of a nil queue")
 	}
 
-	return (*q)[0]
+	return (*q)[0], nil
 
 }
 
-func (q *queue) remove() {
+func (q *queue) remove() error {
 	if q == nil {
-		log.Panicln("ERROR: Can not remove elements in a nil Queue")
+		return errors.New("Can not remove element of a nil queue")
 	}
 
 	*q = (*q)[1:]
+	return nil
 }
 
 func (q *queue) add(element interface{}) {
