@@ -1,5 +1,7 @@
 package main
 
+import "log"
+
 type stack []interface{}
 
 func (s *stack) Push(element interface{}) {
@@ -7,12 +9,19 @@ func (s *stack) Push(element interface{}) {
 }
 
 func (s *stack) Pop() {
+	if *s == nil {
+		log.Panicln("ERROR: - Can not remove elements in a nil stack")
+	}
+
 	*s = (*s)[:len(*s)-1]
 }
 
 func (s *stack) Peek() interface{} {
-	peeked := (*s)[len(*s)-1]
-	return peeked
+	if *s == nil {
+		log.Panicln("ERROR: - Stack is nil")
+	}
+
+	return (*s)[len(*s)-1]
 
 }
 
